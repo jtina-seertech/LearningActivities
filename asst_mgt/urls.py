@@ -21,11 +21,14 @@ from asst_mgt.quickstart import views as quickstartView
 router = routers.DefaultRouter()
 router.register(r'users', quickstartView.UserViewSet)
 router.register(r'groups', quickstartView.GroupViewSet)
+router.register(r'assets', quickstartView.AssetsViewSet)
+router.register(r'status', quickstartView.StatusViewSet)
+router.register(r'borrower', quickstartView.BorrowerViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    url(r'^', include('management.urls')),
+    url(r'^api/', include('management.urls')),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
