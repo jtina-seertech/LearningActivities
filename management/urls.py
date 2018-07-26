@@ -1,8 +1,10 @@
 from django.conf.urls import url, include
+from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
 
 urlpatterns = [
+    url(r'admin/', admin.site.urls),
     url(r'rest-auth/', include('rest_auth.urls')),
     url(r'^assets/$', views.assets_list),
     url(r'^assets/(?P<pk>[0-9]+)/$', views.asset_detail),
