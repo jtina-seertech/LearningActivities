@@ -12,8 +12,10 @@ class AssetsSerializer(serializers.Serializer):
         return Assets.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.name = validated_data.get('title', instance.name)
-        instance.asset_type = validated_data.get('code', instance.asset_type)
+        instance.name = validated_data.get('name', instance.name)
+        instance.asset_type = validated_data.get('asset_type', instance.asset_type)
+        if self.is_valid():
+            instance.save()
         return instance
 
 class StatusSerializer(serializers.Serializer):
@@ -24,7 +26,7 @@ class StatusSerializer(serializers.Serializer):
         return Status.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.name = validated_data.get('title', instance.name)
+        instance.name = validated_data.get('name', instance.name)
         return instance
 
 class AssetsBorrowerSerializer(serializers.Serializer):
